@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="codeApp">
+  <head>
+    <!--script src="angular.min.js"></script-->
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+
+    Busca: <input type="search" ng-model="busca" />
+
+    <div ng-controller="CtrlLista">
+    
+      Pessoas:
+      <select ng-model="selected" ng-options="pessoa.nome for pessoa in pessoas | filter:busca">
+        <option value="">selecione</option>
+      </select>
+
+      <hr />
+
+      <div>
+        Nome: <input type="text" ng-model="selected.nome" /><br />
+        Cidade: <input type="text" ng-model="selected.cidade" /><br />
+      </div>
+
+    </div>
+
+    <script>
+    var myApp = angular.module('codeApp', []);
+
+    var CtrlLista = function($scope){
+      $scope.pessoas = [
+        { nome: 'Maria', cidade: 'Rio de Janeiro'},
+        { nome: 'Joao', cidade: 'Brasilia'},
+        { nome: 'Jesus', cidade: 'Curitiba'},
+        { nome: 'Madalena', cidade: 'Salvador'}
+      ];
+    };
+    
+    myApp.controller('CtrlLista', CtrlLista);
+    </script>
+  </body>
+</html>

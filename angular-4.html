@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="codeApp">
+  <head>
+    <!--script src="angular.min.js"></script-->
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+
+    Busca: <input type="search" ng-model="busca" />
+
+    <div ng-controller="CtrlLista">
+    
+      <div>Total: {{ pessoas.length }}</div>
+
+      <ul>
+        <li ng-repeat="p in pessoas | filter:busca">
+          {{ p.nome }}, <b>{{ p.cidade }}</b>
+          <input type="button" value="remover" ng-click="remover($index)" />
+        </li>
+      </ul>
+
+      <div>
+        Nome: <input type="text" ng-model="vNome" /><br />
+        Cidade: <input type="text" ng-model="vCidade" /><br />
+        <input type="button" value="adicionar" ng-click="adicionar()" />
+      </div>
+    </div>
+
+    <script>
+    var myApp = angular.module('codeApp', []);
+
+    var CtrlLista = function($scope){
+      $scope.pessoas = [
+        { nome: 'Maria', cidade: 'Rio de Janeiro'},
+        { nome: 'Joao', cidade: 'Brasilia'},
+        { nome: 'Jesus', cidade: 'Curitiba'},
+        { nome: 'Madalena', cidade: 'Salvador'}
+      ];
+
+      $scope.adicionar = function() {
+        $scope.pessoas.push({
+          nome: $scope.vNome,
+          cidade: $scope.vCidade
+        });
+
+        $scope.vNome = '';
+        $scope.vCidade = '';
+      };
+
+      $scope.remover = function(index) {
+        $scope.pessoas.splice(index, 1);
+      };
+    };
+    
+    myApp.controller('CtrlLista', CtrlLista);
+    </script>
+  </body>
+</html>

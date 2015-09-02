@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="codeApp">
+  <head>
+    <!--script src="angular.min.js"></script-->
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+
+    <div ng-controller="CtrlApp">
+      <input type="text" ng-model="nome" ng-change="logar()" />
+      <h1>{{nome}}, {{ idade }}</h1>
+    </div>
+
+    <script>
+    var myApp = angular.module('codeApp', []);
+
+    var CtrlApp = function($scope){
+      $scope.nome = 'julio';
+      $scope.idade = 29;
+      $scope.logar = function() {
+        console.log($scope.nome);
+        alert($scope.nome);
+      };
+    };
+    
+    myApp.controller('CtrlApp', CtrlApp);
+    </script>
+  </body>
+</html>
