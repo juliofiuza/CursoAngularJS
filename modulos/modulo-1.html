@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="codeApp">
+  <head>
+    <script src="../angular.min.js"></script>
+  </head>
+  <body>
+  
+    <div ng-controller="CtrlModulo">
+      Meu nome &eacute;: {{ nome }}
+    </div>
+
+    <script>
+    angular.module('codeApp', [])
+
+    .controller('CtrlModulo', function($scope) {
+      $scope.nome = 'Julio';
+    });
+
+    </script>
+  </body>
+</html>
